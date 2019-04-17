@@ -164,3 +164,10 @@ class Dobot(threading.Thread):
     def speed(self, velocity=100., acceleration=100.):
         self._set_ptp_common_params(velocity, acceleration)
         self._set_ptp_coordinate_params(velocity, acceleration)
+
+    def set_home_cwd(self):
+        msg = Message()
+        msg.id = 32
+        msg.ctrl = 0x03
+        msg.params = bytearray([])
+        msg.params.extend(bytearray([0x01]))
